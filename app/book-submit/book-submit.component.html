@@ -1,0 +1,56 @@
+
+
+<form [formGroup]="bookForm" autocomplete="off" novalidate>
+
+  <fieldset>
+
+    <div class="form-field">
+      <input formControlName="book_name" name="book_name"  placeholder="book name">
+    </div>
+
+
+    <div class="form-field">
+      <input formControlName="book_author" name="book_author" placeholder="book author">
+    </div>
+
+    <div class="form-field">
+      <input formControlName="book_genre" name="book_genre" placeholder="book genre">
+    </div>
+
+    <div class="form-field">
+      Book Image:<input type="file" (change)="fileChangeEvent($event)" formControlName="book_image" name="book_image" placeholder="book image">
+    </div>
+
+    <div class="form-field">
+      <input formControlName="book_isbn" name="book_isbn" placeholder="book isbn">
+    </div>
+
+    <div class="form-field">
+      <select name="book_shelf" formControlName="book_shelf" placeholder="shelf">
+        <option *ngFor="let shelf of shelfs" [value]="shelf.id">
+          {{shelf.genre}}
+        </option>
+      </select>
+    </div>
+  </fieldset>
+
+  <p>
+    <button class="btn btn-default btn-block" (click)="addBook(bookForm.value)" [disabled]="!bookForm.valid">Submit Book</button>
+  </p>
+
+</form>
+
+{{bookForm.value | json}}
+
+<!--<form [formGroup]="fileForm" autocomplete="off" novalidate>-->
+  <!---->
+  <!--<fieldset>-->
+    <!---->
+    <!---->
+  <!--</fieldset>-->
+  <!---->
+<!--</form>-->
+
+<input type="file" (change)="fileChangeEvent($event)" placeholder="Upload file..." />
+<button type="button" (click)="upload()">Upload</button>
+

@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 col-md-4 col-md-offset-4">
+      <h2 class="text-center login-title">Login to submit order</h2>
+      <form [formGroup]="loginForm"  novalidate class="form-signin">
+        <fieldset>
+          <div class="form-field">
+
+            <input formControlName="username" name="username" class="form-control" placeholder="Username" required>
+          </div>
+          <div class="form-field">
+
+            <input type="password" formControlName="password" name="password" class="form-control" placeholder="Password" required>
+          </div>
+        </fieldset>
+        <p>
+          <button (click)="login(loginForm.value)" class="btn btn-md btn-default btn-block" [disabled]="!loginForm.valid">Login</button>
+        </p>
+      </form>
+      <a routerLink="/register" routerLinkActive="active" class="text-center new-account">Create an account </a>
+    </div>
+
+  </div>
+</div>
+
+<div><h4>{{errorMessage}}</h4></div>

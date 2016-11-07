@@ -1,0 +1,14 @@
+<h2>Re-Shelf Books</h2>
+
+<ul class="list-group">
+  <li class="list-group-item" *ngFor="let book of returns">
+    {{book.book.book_name}}<br>
+    {{book.book.book_author}}<br>
+    <img class="bookimage" src="{{book.book.book_image}}"><br>
+    {{book.return_date | date}}<br>
+    {{book.user.username}}<br>
+    {{book.user.email}}<br>
+    <button (click)="reShelfBook(book.book.id)" class="btn btn-default" *ngIf="!book.book.is_available">ReShelf Book</button>
+
+  </li>
+</ul>

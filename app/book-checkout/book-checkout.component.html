@@ -1,0 +1,8 @@
+<h2>Book Checkout Summary</h2>
+<div>
+  <ul class="list-group">
+    <li *ngFor="let name of bookCheckout.books" class="list-group-item">
+      <span>{{name}}</span><button (click)="emit(book)" class="btn btn-default">Remove</button>
+    </li>
+  </ul>
+</div>

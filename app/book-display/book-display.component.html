@@ -1,0 +1,40 @@
+<h1>Book Display</h1>
+
+<input name="search" #searchTerm>
+<button (click)="performSearch(searchTerm)">Search</button>
+
+<!--<div *ngFor="let search of searchResults.results">-->
+  <!--{{search.book_name}}<br>-->
+  <!--{{search.book_author}}<br>-->
+  <!--{{search.book_genre}}-->
+<!--</div>-->
+<h2>Search Results:</h2>
+<ul class="list-group">
+  <li class="list-group-item" *ngFor="let search of searchResults.results">
+    {{search.book_name}}<br>
+    {{search.book_author}}<br>
+    {{search.book_genre}}<br>
+    {{search.is_available}}<br>
+    <img class="bookimage" src="{{search.book_image}}"><br>
+    <button (click)="checkout(search)" class="btn btn-default" *ngIf="search.is_available">Checkout</button>
+    <div *ngIf="!search.is_available">Book is checked out</div>
+  </li>
+</ul>
+
+<h2>All Books:</h2>
+<ul class="list-group">
+  <li class="list-group-item" *ngFor="let book of books.results">
+      {{book.book_name}}<br>
+      {{book.book_author}}<br>
+      {{book.book_genre}}<br>
+      {{book.is_available}}<br>
+      <img class="bookimage" src="{{book.book_image}}"><br>
+
+    <!--<button (click)="emit(book)" class="btn btn-default">Checkout Book</button>-->
+    <button (click)="checkout(book)" class="btn btn-default" *ngIf="book.is_available">Checkout</button>
+    <div *ngIf="!book.is_available">Book is checked out</div>
+  </li>
+  <button (click)="previousPage(books.previous)" class="btn btn-default" *ngIf="books.previous != null">Previous Page</button>
+  <button (click)="nextPage(books.next)" class="btn btn-default" *ngIf="books.next != null">Next Page</button>
+
+</ul>

@@ -1,0 +1,14 @@
+<h2>Books to Return</h2>
+
+<ul class="list-group">
+  <li class="list-group-item" *ngFor="let book of myBooks">
+    {{book.book.book_name}}<br>
+    <img class="bookimage" src="{{book.book.book_image}}"><br>
+    Issue Date: {{book.issue_date | date}}<br>
+    Due Date: {{book.due_date | date}}<br>
+    Return Date: {{book.return_date | date}}<br>
+    User: {{book.user.username}}<br>
+    User Email: {{book.user.email}}<br>
+    <button class="btn btn-default" (click)="returnBook(book)" *ngIf="!book.return_date">Return Book</button>
+  </li>
+</ul>
