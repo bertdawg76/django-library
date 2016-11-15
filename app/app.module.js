@@ -34,6 +34,13 @@ var login_guard_1 = require("./router-guard/login-guard");
 var alreadyLoggedIn_guard_1 = require("./router-guard/alreadyLoggedIn-guard");
 var reShelfBook_service_1 = require("./services/reShelfBook.service");
 var book_reshelf_component_1 = require("./book-reshelf/book-reshelf.component");
+var add_book_component_1 = require("./add-book/add-book.component");
+var navbar_component_1 = require("./navbar/navbar.component");
+var branch_switch_component_1 = require("./branch-switch/branch-switch.component");
+var branch_switch_service_1 = require("./services/branch-switch.service");
+var librarian_component_1 = require("./librarian/librarian.component");
+//import {MultipartItem} from "./plugins/multipart-item";
+//import {MultipartUploader} from "./plugins/multipart-uploader";
 var AppModule = (function () {
     function AppModule() {
     }
@@ -56,7 +63,11 @@ var AppModule = (function () {
                 book_checkout_component_1.BookCheckoutComponent,
                 my_books_component_1.MyBooksComponent,
                 book_return_component_1.BookReturnComponent,
-                book_reshelf_component_1.BookReshelfComponent
+                book_reshelf_component_1.BookReshelfComponent,
+                add_book_component_1.AddBookComponent,
+                navbar_component_1.NavbarComponent,
+                branch_switch_component_1.BranchSwitchComponent,
+                librarian_component_1.librarianComponent
             ],
             providers: [
                 login_service_1.LoginService,
@@ -69,7 +80,8 @@ var AppModule = (function () {
                 book_return_service_1.BookReturnService,
                 login_guard_1.LoginGuard,
                 alreadyLoggedIn_guard_1.AlreadyLoggedIn,
-                reShelfBook_service_1.ReShelfBookService
+                reShelfBook_service_1.ReShelfBookService,
+                branch_switch_service_1.BranchSwitchService
             ],
             bootstrap: [
                 app_component_1.AppComponent

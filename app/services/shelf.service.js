@@ -29,6 +29,11 @@ var ShelfService = (function () {
             .map(this.extractData)
             .catch(this.handleError);
     };
+    ShelfService.prototype.getBranch = function (id) {
+        return this.http.get("http://localhost:8700/branch/" + id + "/")
+            .map(this.extractData)
+            .catch(this.handleError);
+    };
     ShelfService.prototype.extractData = function (res) {
         var body = res.json();
         console.log(body);

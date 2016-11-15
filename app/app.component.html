@@ -1,18 +1,17 @@
 <div class="container home">
   <nav class="navbar navbar-default">
     <div class="container-fluid">
-      <div class="navbar-header">
-        <p class="navbar-brand">Library</p>
-      </div>
-      <ul class="nav navbar-nav">
+      <ul class="nav navbar-header nav-tabs">
         <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
         <li><a routerLink="/bookdisplay" routerLinkActive="active" *ngIf="isLoggedIn()">Find Books</a></li>
         <li><a routerLink="/addbook" routerLinkActive="active" *ngIf="isALibrarian()">AddBook</a></li>
         <li><a routerLink="/mybooks" routerLinkActive="active" *ngIf="isLoggedIn()">My Books</a></li>
         <li><a routerLink="/returns" routerLinkActive="active" *ngIf="isLoggedIn()">Returns</a></li>
         <li><a routerLink="/reshelf" routerLinkActive="active" *ngIf="isALibrarian()">ReShelf Books</a></li>
+        <li><a routerLink="/librarian" routerLinkActive="active" *ngIf="isALibrarian()">Switch Books</a></li>
+        <!--<li><a routerLink="/addanotherbook" routerLinkActive="active">add another Books</a></li>-->
       </ul>
-      <ul class="nav navbar-nav navbar-right">
+      <ul class="nav navbar-header navbar-right nav-tabs">
         <li><a routerLink="/register" routerLinkActive="active" *ngIf="!isLoggedIn()">Register</a></li>
         <li><a routerLink="/login" routerLinkActive="active" *ngIf="!isLoggedIn()">Login</a></li>
         <li><a (click)="logout()" *ngIf="isLoggedIn()">Logout</a></li>
@@ -21,6 +20,7 @@
       </ul>
     </div>
   </nav>
+
 
   <router-outlet></router-outlet>
 

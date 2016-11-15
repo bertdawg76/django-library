@@ -12,6 +12,8 @@ import {BookReturnComponent} from "./book-return/book-return.component";
 import {LoginGuard} from "./router-guard/login-guard";
 import {AlreadyLoggedIn} from "./router-guard/alreadyLoggedIn-guard";
 import {BookReshelfComponent} from "./book-reshelf/book-reshelf.component";
+import {AddBookComponent} from "./add-book/add-book.component";
+import {librarianComponent} from "./librarian/librarian.component";
 
 
 
@@ -27,6 +29,8 @@ import {BookReshelfComponent} from "./book-reshelf/book-reshelf.component";
             { path: 'mybooks', component: MyBooksComponent, canActivate: [LoginGuard]},
             { path: 'returns', component: BookReturnComponent, canActivate: [LoginGuard]},
             { path: 'reshelf', component: BookReshelfComponent, canActivate: [BookSubmitGuard]},
+            { path: 'librarian', component: librarianComponent, canActivate: [BookSubmitGuard]}
+            //{ path: 'addanotherbook', component: AddBookComponent}
 
         ])
     ],

@@ -1,0 +1,14 @@
+<div>
+  <nav class="nav navbar-default">
+    <ul class="navbar">
+      <li *ngFor="let tabLink of tabLinks; let i = index">
+        <a [routerLink]="tabLink.link"
+        routerLinkActive="activeLinkIndex === i"
+        (click)="activeLinkIndex = i">
+          {{tabLink.label}}
+        </a>
+      </li>
+      </ul>
+  </nav>
+
+</div>

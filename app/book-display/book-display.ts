@@ -7,7 +7,16 @@ export class Book {
     book_genre: string;
     book_shelf: string;
     is_available: boolean;
+    results: any;
+    location: any;
 }
+
+//export class Book {
+//    count: number;
+//    next: any;
+//    previous: any;
+//    results: any;
+//}
 
 export class Shelf {
 

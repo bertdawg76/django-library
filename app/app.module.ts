@@ -25,6 +25,13 @@ import {LoginGuard} from "./router-guard/login-guard";
 import {AlreadyLoggedIn} from "./router-guard/alreadyLoggedIn-guard";
 import {ReShelfBookService} from "./services/reShelfBook.service";
 import {BookReshelfComponent} from "./book-reshelf/book-reshelf.component";
+import {AddBookComponent} from "./add-book/add-book.component";
+import {NavbarComponent} from "./navbar/navbar.component";
+import {BranchSwitchComponent} from "./branch-switch/branch-switch.component";
+import {BranchSwitchService} from "./services/branch-switch.service";
+import {librarianComponent} from "./librarian/librarian.component";
+//import {MultipartItem} from "./plugins/multipart-item";
+//import {MultipartUploader} from "./plugins/multipart-uploader";
 
 @NgModule({
     imports: [
@@ -44,7 +51,12 @@ import {BookReshelfComponent} from "./book-reshelf/book-reshelf.component";
         BookCheckoutComponent,
         MyBooksComponent,
         BookReturnComponent,
-        BookReshelfComponent
+        BookReshelfComponent,
+        AddBookComponent,
+        NavbarComponent,
+        BranchSwitchComponent,
+        librarianComponent
+
 
     ],
     providers: [
@@ -58,7 +70,8 @@ import {BookReshelfComponent} from "./book-reshelf/book-reshelf.component";
         BookReturnService,
         LoginGuard,
         AlreadyLoggedIn,
-        ReShelfBookService
+        ReShelfBookService,
+        BranchSwitchService
     ],
     bootstrap: [
         AppComponent

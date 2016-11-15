@@ -1,0 +1,70 @@
+<!--<form>-->
+  <!--<div class="form-group">-->
+    <!--<label for="Book name">Book Name</label>-->
+    <!--<input type="text" class="form-control" id="Book name" name="book_name" placeholder="Book Name" [(ngModel)]="book_name">-->
+  <!--</div>-->
+  <!--<div class="form-group">-->
+    <!--<label for="Book author">Book Author</label>-->
+    <!--<input type="text" class="form-control" id="Book author" name="book_author" placeholder="Book Author" [(ngModel)]="book_author">-->
+  <!--</div>-->
+  <!--<div class="form-group">-->
+    <!--<label for="exampleInputFile">File input</label>-->
+    <!--<input type="file" id="exampleInputFile" (change)="selectFile($event)">-->
+  <!--</div>-->
+  <!--<div class="form-group">-->
+    <!--<label for="Book isbn">Book ISBN</label>-->
+    <!--<input type="text" class="form-control" id="Book isbn" name="book_isbn" placeholder="Book ISBN" [(ngModel)]="book_isbn">-->
+  <!--</div>-->
+  <!--<div class="form-group">-->
+    <!--<label for="Book shelf">Book Shelf</label>-->
+    <!--<input type="text" class="form-control" id="Book shelf" name="book_shelf" placeholder="Book Shelf" [(ngModel)]="book_shelf">-->
+  <!--</div>-->
+  <!--<button type="submit" class="btn btn-default" (click)="upload();">Submit</button>-->
+<!--</form>-->
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 col-md-4 col-md-offset-4">
+      <form [formGroup]="bookForm" autocomplete="off" novalidate>
+
+        <fieldset>
+
+          <div class="form-field">
+            <input formControlName="book_name" name="book_name" [(ngModel)]="bookSwitch.book_name" placeholder="book name" class="form-control">
+          </div>
+
+
+          <div class="form-field">
+            <input formControlName="book_author" name="book_author"  [(ngModel)]="bookSwitch.book_author"  placeholder="book author" class="form-control">
+          </div>
+
+          <div class="form-field">
+            <input formControlName="id" name="id" placeholder="id" [(ngModel)]="bookSwitch.id" class="form-control">
+          </div>
+
+          <!--<div class="form-field">-->
+          <!--Book Image:<input type="file" (change)="fileChangeEvent($event)" formControlName="book_image" name="book_image" placeholder="book image">-->
+          <!--</div>-->
+
+          <!--<div class="form-field">-->
+            <!--<input formControlName="book_isbn" name="book_isbn" placeholder="book isbn">-->
+          <!--</div>-->
+
+          <div class="form-field">
+            <select name="book_shelf" formControlName="book_shelf" placeholder="shelf" class="form-control">
+              <option *ngFor="let shelf of shelfs" [value]="shelf.id">
+                {{shelf.genre}} {{shelf.branch.location}}
+              </option>
+            </select>
+          </div>
+        </fieldset>
+
+        <p>
+          <button class="btn btn-default btn-block" (click)="addBook(bookForm.value)" [disabled]="!bookForm.valid">Submit Book</button>
+        </p>
+
+      </form>
+    </div>
+  </div>
+</div>
+
+<!--{{bookForm.value | json}}-->

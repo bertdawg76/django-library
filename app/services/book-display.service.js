@@ -35,7 +35,17 @@ var BookDisplayService = (function () {
         headers.append('Authorization', "Token " + authToken);
         var options = new http_2.RequestOptions({ headers: headers });
         console.log(headers);
-        return this.http.post(this.booksUrl, data, options)
+        return this.http.patch("" + this.booksUrl + data['id'] + "/", data, options)
+            .map(this.extractData)
+            .catch(this.handleError);
+    };
+    BookDisplayService.prototype.getShelf = function (id) {
+        return this.http.get("http://localhost:8700/shelf/" + id + "/")
+            .map(this.extractData)
+            .catch(this.handleError);
+    };
+    BookDisplayService.prototype.getBranch = function (id) {
+        return this.http.get("http://localhost:8700/branch/" + id + "/")
             .map(this.extractData)
             .catch(this.handleError);
     };

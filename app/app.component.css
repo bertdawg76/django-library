@@ -1,0 +1,12 @@
+
+
+.navbar-default {
+    background-color: lightgray;
+    border-color: gray;
+}
+
+.active {
+    background-color: #EEEEEE;
+;
+}
+

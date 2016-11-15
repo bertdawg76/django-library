@@ -1,14 +1,37 @@
 <h2>Re-Shelf Books</h2>
 
-<ul class="list-group">
-  <li class="list-group-item" *ngFor="let book of returns">
-    {{book.book.book_name}}<br>
-    {{book.book.book_author}}<br>
-    <img class="bookimage" src="{{book.book.book_image}}"><br>
-    {{book.return_date | date}}<br>
-    {{book.user.username}}<br>
-    {{book.user.email}}<br>
-    <button (click)="reShelfBook(book.book.id)" class="btn btn-default" *ngIf="!book.book.is_available">ReShelf Book</button>
+<!--<ul class="list-group">-->
+  <!--<li class="list-group-item" *ngFor="let book of returns">-->
+    <!--{{book.book.book_name}}<br>-->
+    <!--{{book.book.due_date}}<br>-->
+    <!--{{book.book.book_author}}<br>-->
+    <!--<img class="bookimage" src="{{book.book.book_image}}"><br>-->
+    <!--{{book.return_date | date}}<br>-->
+    <!--{{book.user.username}}<br>-->
+    <!--{{book.user.email}}<br>-->
+    <!--<button (click)="reShelfBook(book.book.id)" class="btn btn-default" *ngIf="!book.book.is_available">ReShelf Book</button>-->
 
-  </li>
-</ul>
+  <!--</li>-->
+<!--</ul>-->
+<table class="table table-hover">
+  <tr>
+    <th>Book</th>
+    <th>Author</th>
+    <!--<th>Due Date</th>-->
+    <th>Image</th>
+    <!--<th>Return Date</th>-->
+    <th>User</th>
+    <th>Email</th>
+    <th>ReShelf</th>
+  </tr>
+  <tr *ngFor="let book of returns">
+    <td>{{book.book.book_name}}</td>
+    <td>{{book.book.book_author}}</td>
+    <!--<td>{{book.book.due_date}}</td>-->
+    <td><img class="bookimage" src="{{book.book.book_image}}"></td>
+    <!--<td>{{book.book.return_date | date}}</td>-->
+    <td>{{book.user.username}}</td>
+    <td>{{book.user.email}}</td>
+    <td><button (click)="reShelfBook(book.book.id)" class="btn btn-default" *ngIf="!book.book.is_available">ReShelf</button></td>
+  </tr>
+</table>

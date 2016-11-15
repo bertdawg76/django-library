@@ -35,7 +35,19 @@ export class BookDisplayService {
         headers.append('Authorization', `Token ${authToken}`);
         let options = new RequestOptions({ headers: headers });
         console.log(headers);
-        return this.http.post(this.booksUrl, data, options)
+        return this.http.patch(`${this.booksUrl}${data['id']}/`, data, options)
+            .map(this.extractData)
+            .catch(this.handleError);
+    }
+
+    public getShelf(id: string | number){
+        return this.http.get(`http://localhost:8700/shelf/${id}/`)
+            .map(this.extractData)
+            .catch(this.handleError);
+    }
+
+    public getBranch(id: string | number){
+        return this.http.get(`http://localhost:8700/branch/${id}/`)
             .map(this.extractData)
             .catch(this.handleError);
     }

@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import {ShelfService} from "../services/shelf.service";
 
 
+
 @Component({
     moduleId: module.id,
     selector: 'book-submit',
@@ -15,6 +16,7 @@ import {ShelfService} from "../services/shelf.service";
 
 export class BookSubmitComponent implements OnInit {
 
+    isLibrarian: any;
     filesToUpload: Array<File>;
     shelfs: Shelf[];
     books: Book[];
@@ -53,9 +55,17 @@ export class BookSubmitComponent implements OnInit {
         });
 
         this.filesToUpload = [];
+
+        this.isLibrarian = new String;
     }
 
-    ngOnInit() { this.getShelf();}
+    ngOnInit() { this.getShelf(); this.isALibrarian();}
+
+    isALibrarian(){
+        this.isLibrarian = localStorage.getItem('Librarian');
+        console.log(this.isLibrarian);
+        return this.isLibrarian;
+    }
 
     addBook (data: any) {
         console.log(data);
@@ -69,51 +79,27 @@ export class BookSubmitComponent implements OnInit {
 
     }
 
-    getShelf(){
-        this.shelfService.getShelf()
-
-            .subscribe(
-                shelfs => this.shelfs = shelfs,
-                error => this.errorMessage = <any>error
 
 
-            )
+    getShelf() {
+        this.shelfService.getShelf().subscribe((response:any) => {
+            console.log(response);
+            response.forEach((item) => {
 
-    }
-    upload() {
-        this.makeFileRequest("http://127.0.0.1:8700/book/", [], this.filesToUpload).then((result) => {
-            console.log(result);
-        }, (error) => {
-            console.error(error);
+                this.shelfService.getBranch(item.branch).subscribe((branch:any) => {
+                    item.branch = branch;
+                    console.log(branch);
+                });
+
+
+            });
+            this.shelfs = response;
+            console.log(this.shelfs);
         });
+
     }
 
-    fileChangeEvent(fileInput: any){
-        this.filesToUpload = <Array<File>> fileInput.target.files;
-        console.log(this.filesToUpload);
-    }
 
-    makeFileRequest(url: string, params: Array<string>, files: Array<File>) {
-        return new Promise((resolve, reject) => {
-            var formData: any = new FormData();
-            var xhr = new XMLHttpRequest();
-            for(var i = 0; i < files.length; i++) {
-                formData.append("uploads[]", files[i], files[i].name);
-            }
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState == 4) {
-                    if (xhr.status == 200) {
-                        resolve(JSON.parse(xhr.response));
-                    } else {
-                        reject(xhr.response);
-                    }
-                }
-            };
-            xhr.open("POST", url, true);
-            xhr.send(formData);
-            console.log(formData);
-        });
-    }
 
 
 }

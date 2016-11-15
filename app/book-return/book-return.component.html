@@ -1,14 +1,37 @@
 <h2>Books to Return</h2>
 
-<ul class="list-group">
-  <li class="list-group-item" *ngFor="let book of myBooks">
-    {{book.book.book_name}}<br>
-    <img class="bookimage" src="{{book.book.book_image}}"><br>
-    Issue Date: {{book.issue_date | date}}<br>
-    Due Date: {{book.due_date | date}}<br>
-    Return Date: {{book.return_date | date}}<br>
-    User: {{book.user.username}}<br>
-    User Email: {{book.user.email}}<br>
-    <button class="btn btn-default" (click)="returnBook(book)" *ngIf="!book.return_date">Return Book</button>
-  </li>
-</ul>
+<!--<ul class="list-group">-->
+  <!--<li class="list-group-item" *ngFor="let book of myBooks">-->
+    <!--{{book.book.book_name}}<br>-->
+    <!--<img class="bookimage" src="{{book.book.book_image}}"><br>-->
+    <!--Issue Date: {{book.issue_date | date}}<br>-->
+    <!--Due Date: {{book.due_date | date}}<br>-->
+    <!--Return Date: {{book.return_date | date}}<br>-->
+    <!--User: {{book.user.username}}<br>-->
+    <!--User Email: {{book.user.email}}<br>-->
+    <!--<button class="btn btn-default" (click)="returnBook(book)" *ngIf="!book.return_date">Return Book</button>-->
+  <!--</li>-->
+<!--</ul>-->
+
+<table class="table table-hover">
+  <tr>
+    <th>Book</th>
+    <th>Image</th>
+    <th>Issue Date</th>
+    <th>Due Date</th>
+    <th>Return Date</th>
+    <th>User</th>
+    <th>Email</th>
+    <th>Return</th>
+  </tr>
+  <tr *ngFor="let book of myBooks">
+    <td>{{book.book.book_name}}</td>
+    <td><img class="bookimage" src="{{book.book.book_image}}"></td>
+    <td>{{book.issue_date | date}}</td>
+    <td>{{book.due_date | date}}</td>
+    <td>{{book.return_date | date}}</td>
+    <td>{{book.user.username}}</td>
+    <td>{{book.user.email}}</td>
+    <td><button (click)="returnBook(book)" class="btn btn-default" *ngIf="!book.return_date">Return</button></td>
+  </tr>
+</table>

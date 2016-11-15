@@ -1,3 +1,4 @@
+"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -44,8 +45,14 @@ var BookSubmitComponent = (function () {
             ]
         });
         this.filesToUpload = [];
+        this.isLibrarian = new String;
     }
-    BookSubmitComponent.prototype.ngOnInit = function () { this.getShelf(); };
+    BookSubmitComponent.prototype.ngOnInit = function () { this.getShelf(); this.isALibrarian(); };
+    BookSubmitComponent.prototype.isALibrarian = function () {
+        this.isLibrarian = localStorage.getItem('Librarian');
+        console.log(this.isLibrarian);
+        return this.isLibrarian;
+    };
     BookSubmitComponent.prototype.addBook = function (data) {
         var _this = this;
         console.log(data);
@@ -59,40 +66,16 @@ var BookSubmitComponent = (function () {
     };
     BookSubmitComponent.prototype.getShelf = function () {
         var _this = this;
-        this.shelfService.getShelf()
-            .subscribe(function (shelfs) { return _this.shelfs = shelfs; }, function (error) { return _this.errorMessage = error; });
-    };
-    BookSubmitComponent.prototype.upload = function () {
-        this.makeFileRequest("http://127.0.0.1:8700/book/", [], this.filesToUpload).then(function (result) {
-            console.log(result);
-        }, function (error) {
-            console.error(error);
-        });
-    };
-    BookSubmitComponent.prototype.fileChangeEvent = function (fileInput) {
-        this.filesToUpload = fileInput.target.files;
-        console.log(this.filesToUpload);
-    };
-    BookSubmitComponent.prototype.makeFileRequest = function (url, params, files) {
-        return new Promise(function (resolve, reject) {
-            var formData = new FormData();
-            var xhr = new XMLHttpRequest();
-            for (var i = 0; i < files.length; i++) {
-                formData.append("uploads[]", files[i], files[i].name);
-            }
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState == 4) {
-                    if (xhr.status == 200) {
-                        resolve(JSON.parse(xhr.response));
-                    }
-                    else {
-                        reject(xhr.response);
-                    }
-                }
-            };
-            xhr.open("POST", url, true);
-            xhr.send(formData);
-            console.log(formData);
+        this.shelfService.getShelf().subscribe(function (response) {
+            console.log(response);
+            response.forEach(function (item) {
+                _this.shelfService.getBranch(item.branch).subscribe(function (branch) {
+                    item.branch = branch;
+                    console.log(branch);
+                });
+            });
+            _this.shelfs = response;
+            console.log(_this.shelfs);
         });
     };
     BookSubmitComponent = __decorate([
@@ -105,6 +88,6 @@ var BookSubmitComponent = (function () {
         __metadata('design:paramtypes', [book_display_service_1.BookDisplayService, router_1.Router, forms_1.FormBuilder, shelf_service_1.ShelfService])
     ], BookSubmitComponent);
     return BookSubmitComponent;
-})();
+}());
 exports.BookSubmitComponent = BookSubmitComponent;
 //# sourceMappingURL=book-submit.component.js.map

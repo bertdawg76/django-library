@@ -21,6 +21,7 @@ var book_return_component_1 = require("./book-return/book-return.component");
 var login_guard_1 = require("./router-guard/login-guard");
 var alreadyLoggedIn_guard_1 = require("./router-guard/alreadyLoggedIn-guard");
 var book_reshelf_component_1 = require("./book-reshelf/book-reshelf.component");
+var librarian_component_1 = require("./librarian/librarian.component");
 var AppRoutingModule = (function () {
     function AppRoutingModule() {
     }
@@ -37,6 +38,7 @@ var AppRoutingModule = (function () {
                     { path: 'mybooks', component: my_books_component_1.MyBooksComponent, canActivate: [login_guard_1.LoginGuard] },
                     { path: 'returns', component: book_return_component_1.BookReturnComponent, canActivate: [login_guard_1.LoginGuard] },
                     { path: 'reshelf', component: book_reshelf_component_1.BookReshelfComponent, canActivate: [book_submit_guard_1.BookSubmitGuard] },
+                    { path: 'librarian', component: librarian_component_1.librarianComponent, canActivate: [book_submit_guard_1.BookSubmitGuard] }
                 ])
             ],
             exports: [

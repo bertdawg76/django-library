@@ -1,0 +1,62 @@
+<h2>Transfer Book</h2>
+
+<!--<form [formGroup]="searchForm">-->
+<!--<input name="searchterm" #searchTerm class="form-control" formControlName="searchterm">-->
+<!--<button (click)="performSearch(searchForm.value)" class="btn btn-default">Search</button>-->
+<!--</form>-->
+<!--<input name="search" #searchTerm class="form-control">-->
+<!--<button (click)="performSearch(searchTerm)" class="btn btn-default">Search</button>-->
+
+<input [(ngModel)]="searchText" (ngModelChange)="search($event)" placeholder="Search" class="form-control">
+
+<h2 *ngIf="searchResults.results">Search Results:</h2>
+
+<table class="table table-hover" *ngIf="searchResults.results">
+  <tr>
+    <th>Book</th>
+    <th>Author</th>
+    <th>Genre</th>
+    <th>Location</th>
+    <th>Image</th>
+    <th>Checkout</th>
+  </tr>
+  <tr *ngFor="let search of searchResults.results">
+    <td>{{search.book_name}}</td>
+    <td>{{search.book_author}}</td>
+    <td>{{search.book_genre}}</td>
+    <td>{{search.location}}</td>
+    <td><img class="bookimage" src="{{search.book_image}}"></td>
+    <td><button (click)="emit(book)" class="btn btn-default" *ngIf="search.is_available">Checkout</button>
+      <div *ngIf="!search.is_available">Book available {{search.book_due_date | date }}</div></td>
+  </tr>
+  <button (click)="previousSearchPage(searchResults.previous)" class="btn btn-default" *ngIf="searchResults.previous != null">Previous Page</button>
+  <button (click)="nextSearchPage(searchResults.next)" class="btn btn-default" *ngIf="searchResults.next != null">Next Page</button>
+
+</table>
+
+<h2 *ngIf="!searchResults.results">All Books:</h2>
+
+<!--<span *ngFor="let location of books.results.branch"></span>-->
+<table class="table table-hover" *ngIf="!searchResults.results">
+  <tr>
+    <th>Book</th>
+    <th>Author</th>
+    <th>Genre</th>
+    <th>Location</th>
+    <th>Image</th>
+    <th>Checkout</th>
+  </tr>
+  <tr *ngFor="let book of books.results">
+    <td>{{book.book_name}}</td>
+    <td>{{book.book_author}}</td>
+    <td>{{book.book_genre}}</td>
+    <td>{{book.location}}</td>
+    <td><img class="bookimage" src="{{book.book_image}}"></td>
+    <td><button (click)="emit(book)" class="btn btn-default" *ngIf="book.is_available">Transfer Book
+    </button>
+      <div *ngIf="!book.is_available">Book available {{book.book_due_date | date }}</div></td>
+  </tr>
+  <button (click)="previousPage(books.previous)" class="btn btn-default" *ngIf="books.previous != null">Previous Page</button>
+  <button (click)="nextPage(books.next)" class="btn btn-default" *ngIf="books.next != null">Next Page</button>
+
+</table>

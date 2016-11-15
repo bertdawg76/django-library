@@ -1,46 +1,46 @@
 
 
-<form [formGroup]="bookForm" autocomplete="off" novalidate>
+<!--<form [formGroup]="bookForm" autocomplete="off" novalidate>-->
 
-  <fieldset>
+  <!--<fieldset>-->
 
-    <div class="form-field">
-      <input formControlName="book_name" name="book_name"  placeholder="book name">
-    </div>
+    <!--<div class="form-field">-->
+      <!--<input formControlName="book_name" name="book_name"  placeholder="book name">-->
+    <!--</div>-->
 
 
-    <div class="form-field">
-      <input formControlName="book_author" name="book_author" placeholder="book author">
-    </div>
+    <!--<div class="form-field">-->
+      <!--<input formControlName="book_author" name="book_author" placeholder="book author">-->
+    <!--</div>-->
 
-    <div class="form-field">
-      <input formControlName="book_genre" name="book_genre" placeholder="book genre">
-    </div>
+    <!--<div class="form-field">-->
+      <!--<input formControlName="book_genre" name="book_genre" placeholder="book genre">-->
+    <!--</div>-->
 
-    <div class="form-field">
-      Book Image:<input type="file" (change)="fileChangeEvent($event)" formControlName="book_image" name="book_image" placeholder="book image">
-    </div>
+    <!--<div class="form-field">-->
+      <!--Book Image:<input type="file" (change)="fileChangeEvent($event)" formControlName="book_image" name="book_image" placeholder="book image">-->
+    <!--</div>-->
 
-    <div class="form-field">
-      <input formControlName="book_isbn" name="book_isbn" placeholder="book isbn">
-    </div>
+    <!--<div class="form-field">-->
+      <!--<input formControlName="book_isbn" name="book_isbn" placeholder="book isbn">-->
+    <!--</div>-->
 
-    <div class="form-field">
-      <select name="book_shelf" formControlName="book_shelf" placeholder="shelf">
-        <option *ngFor="let shelf of shelfs" [value]="shelf.id">
-          {{shelf.genre}}
-        </option>
-      </select>
-    </div>
-  </fieldset>
+    <!--<div class="form-field">-->
+      <!--<select name="book_shelf" formControlName="book_shelf" placeholder="shelf">-->
+        <!--<option *ngFor="let shelf of shelfs" [value]="shelf.id">-->
+          <!--{{shelf.genre}}-->
+        <!--</option>-->
+      <!--</select>-->
+    <!--</div>-->
+  <!--</fieldset>-->
 
-  <p>
-    <button class="btn btn-default btn-block" (click)="addBook(bookForm.value)" [disabled]="!bookForm.valid">Submit Book</button>
-  </p>
+  <!--<p>-->
+    <!--<button class="btn btn-default btn-block" (click)="addBook(bookForm.value)" [disabled]="!bookForm.valid">Submit Book</button>-->
+  <!--</p>-->
 
-</form>
+<!--</form>-->
 
-{{bookForm.value | json}}
+<!--{{bookForm.value | json}}-->
 
 <!--<form [formGroup]="fileForm" autocomplete="off" novalidate>-->
   <!---->
@@ -51,6 +51,39 @@
   <!---->
 <!--</form>-->
 
-<input type="file" (change)="fileChangeEvent($event)" placeholder="Upload file..." />
-<button type="button" (click)="upload()">Upload</button>
+<!--<input type="file" (change)="fileChangeEvent($event)" placeholder="Upload file..." />-->
+<!--<button type="button" (click)="upload()">Upload</button>-->
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 col-md-4 col-md-offset-4">
+      <form enctype="multipart/form-data" id="book" method="post" action="http://127.0.0.1:8700/book/upload_book/">
+        <div class="form-field">
+          <input type="file" name="book_image" placeholder="book image" class="form-control"/>
+        </div>
+        <div>
+          <input type="text" name="book_name" placeholder="book name" class="form-control"/>
+        </div>
+        <div>
+          <input type="text" name="book_author" placeholder="book author" class="form-control">
+        </div>
+        <div>
+          <input type="text" name="book_genre" placeholder="book genre" class="form-control">
+        </div>
+        <div>
+          <input type="text" name="book_isbn" placeholder="book isbn" class="form-control">
+        </div>
+  <!--<input type="text" name="isLibrarian" *ngIf="isLibrarian" value="{{isLibrarian}}" style="display: none"><br>-->
+        <div class="form-field">
+          <select name="book_shelf" class="form-control">
+            <option *ngFor="let shelf of shelfs" value="{{shelf.id}}">
+              {{shelf.genre}} {{shelf.branch.location}}
+            </option>
+          </select>
+        </div>
+        <input type="button" class="btn btn-default" onclick="document.all.book.submit()" value="Submit"/>
+        <input type="text" name="isLibrarian" *ngIf="isLibrarian" value="{{isLibrarian}}" style="display: none"><br>
 
+      </form>
+    </div>
+  </div>
+</div>

@@ -5,6 +5,12 @@ var Book = (function () {
     return Book;
 }());
 exports.Book = Book;
+//export class Book {
+//    count: number;
+//    next: any;
+//    previous: any;
+//    results: any;
+//}
 var Shelf = (function () {
     function Shelf() {
     }

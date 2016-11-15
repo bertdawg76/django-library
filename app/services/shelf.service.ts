@@ -29,6 +29,12 @@ export class ShelfService {
 
     }
 
+    public getBranch(id: string | number){
+        return this.http.get(`http://localhost:8700/branch/${id}/`)
+            .map(this.extractData)
+            .catch(this.handleError);
+    }
+
     private extractData(res: Response) {
         let body = res.json();
         console.log(body);
